@@ -1,0 +1,548 @@
+{
+    "version": "1.0",
+    "lastModified": "Fri Feb 01 11:22:34 EST 2013",
+    "services": [{
+        "name": "VehicleOrderService",
+        "address": "\/rest\/VehicleOrder",
+        "useRequest": true,
+        "resources": [
+            {
+                "name": "ShoppingCartService",
+                "path": "\/Cart",
+                "schema": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {"dsShoppingCart": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "eShoppingCart": {
+                                "type": "array",
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "_id": {"type": "string"},
+                                        "Brand": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Id": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "EnteredDate": {
+                                            "type": "string",
+                                            "default": null,
+                                            "title": "",
+                                            "format": "date-time"
+                                        },
+                                        "Discount": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "Price": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "Qty": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "CustomerNum": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "CustomerName": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemNum": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "ItemName": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemType": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Description": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "OrderNum": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "OrderAmount": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "OrderStatus": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Instructions": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "SalesrepCode": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "DealerCode": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "DealerId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        }
+                                    }
+                                }
+                            },
+                            "eShoppingCartOption": {
+                                "type": "array",
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "_id": {"type": "string"},
+                                        "Id": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemNum": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "ItemName": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemType": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Description": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Quantity": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "Price": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "Discount": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }}
+                },
+                "relations": [{
+                    "relationName": "eShoppingCart",
+                    "parentName": "eShoppingCart",
+                    "childName": "eShoppingCartOption",
+                    "relationFields": [{
+                        "parentFieldName": "Id",
+                        "childFieldName": "Id"
+                    }]
+                }],
+                "operations": [
+                    {
+                        "path": "",
+                        "type": "delete",
+                        "verb": "delete",
+                        "params": [{
+                            "name": "dsShoppingCart",
+                            "type": "REQUEST_BODY"
+                        }]
+                    },
+                    {
+                        "path": "?filter={filter}",
+                        "type": "read",
+                        "verb": "get",
+                        "params": []
+                    },
+                    {
+                        "path": "",
+                        "type": "create",
+                        "verb": "post",
+                        "params": [{
+                            "name": "dsShoppingCart",
+                            "type": "REQUEST_BODY"
+                        }]
+                    },
+                    {
+                        "path": "",
+                        "type": "update",
+                        "verb": "put",
+                        "params": [{
+                            "name": "dsShoppingCart",
+                            "type": "REQUEST_BODY"
+                        }]
+                    },
+                    {
+                        "name": "CalculateDiscount",
+                        "path": "\/CalculateDiscount",
+                        "type": "invoke",
+                        "verb": "put",
+                        "params": [{
+                            "name": "dsShoppingCart",
+                            "type": "REQUEST_BODY"
+                        }]
+                    },
+                    {
+                        "name": "CaptureOrder",
+                        "path": "\/CaptureOrder",
+                        "type": "invoke",
+                        "verb": "put",
+                        "params": [
+                            {
+                                "name": "pcBrand",
+                                "type": "REQUEST_BODY"
+                            },
+                            {
+                                "name": "pcShoppingCartId",
+                                "type": "REQUEST_BODY"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "DealerService",
+                "path": "\/Dealer",
+                "schema": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {"dsDealer": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "eDealer": {
+                                "type": "array",
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "_id": {"type": "string"},
+                                        "Brand": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "DealerId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Code": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Name": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "SalesEmail": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "InfoEmail": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "StreetAddress": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Location": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "PhoneNumber": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        }
+                                    }
+                                }
+                            },
+                            "eSalesrep": {
+                                "type": "array",
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "_id": {"type": "string"},
+                                        "DealerId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Code": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Quota": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "Region": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }}
+                },
+                "relations": [{
+                    "relationName": "eDealer",
+                    "parentName": "eDealer",
+                    "childName": "eSalesrep",
+                    "relationFields": [{
+                        "parentFieldName": "DealerId",
+                        "childFieldName": "DealerId"
+                    }]
+                }],
+                "operations": [{
+                    "path": "?filter={filter}",
+                    "type": "read",
+                    "verb": "get",
+                    "params": []
+                }]
+            },
+            {
+                "name": "BrandDataService",
+                "path": "\/BrandData",
+                "schema": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {"dsVehicleOptions": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "eVehicle": {
+                                "type": "array",
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "_id": {"type": "string"},
+                                        "Brand": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "VehicleName": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Description": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Price": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "VehicleType": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "StyleCode": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Style": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ImgURL": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        }
+                                    }
+                                }
+                            },
+                            "eItemOption": {
+                                "type": "array",
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "_id": {"type": "string"},
+                                        "ItemId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemNum": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "ChildItemId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ChildItemNum": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "ChildType": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Quantity": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "StandardOption": {
+                                            "type": "boolean",
+                                            "default": false,
+                                            "title": ""
+                                        }
+                                    }
+                                }
+                            },
+                            "eItem": {
+                                "type": "array",
+                                "items": {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "_id": {"type": "string"},
+                                        "ItemId": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemNum": {
+                                            "type": "integer",
+                                            "default": 0,
+                                            "title": ""
+                                        },
+                                        "ItemName": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "ItemType": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Description": {
+                                            "type": "string",
+                                            "default": "",
+                                            "title": ""
+                                        },
+                                        "Price": {
+                                            "type": "number",
+                                            "default": 0,
+                                            "title": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }}
+                },
+                "relations": [
+                    {
+                        "relationName": "eVehicle",
+                        "parentName": "eVehicle",
+                        "childName": "eItemOption",
+                        "relationFields": [{
+                            "parentFieldName": "ItemId",
+                            "childFieldName": "ItemId"
+                        }]
+                    },
+                    {
+                        "relationName": "eItemOption",
+                        "parentName": "eItemOption",
+                        "childName": "eItem",
+                        "relationFields": [{
+                            "parentFieldName": "ChildItemId",
+                            "childFieldName": "ItemId"
+                        }]
+                    }
+                ],
+                "operations": [{
+                    "path": "?filter={filter}",
+                    "type": "read",
+                    "verb": "get",
+                    "params": []
+                }]
+            }
+        ]
+    }]
+}

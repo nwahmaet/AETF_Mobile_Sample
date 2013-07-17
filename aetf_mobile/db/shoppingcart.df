@@ -1,0 +1,218 @@
+ADD TABLE "ShoppingCart"
+  AREA "Data"
+  DESCRIPTION "Shopping cart for online orders."
+  DUMP-NAME "shoppingcart"
+
+ADD FIELD "Price" OF "ShoppingCart" AS decimal 
+  DESCRIPTION "This field should get its default from the ITEM file's price field."
+  FORMAT "->,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Price"
+  POSITION 5
+  MAX-WIDTH 17
+  HELP "Please enter the price"
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "Qty" OF "ShoppingCart" AS integer 
+  FORMAT "->>>>9"
+  INITIAL "0"
+  LABEL "Qty"
+  POSITION 6
+  MAX-WIDTH 4
+  HELP "Please enter the quantity."
+  ORDER 80
+
+ADD FIELD "Discount" OF "ShoppingCart" AS integer 
+  FORMAT ">>9%"
+  INITIAL "0"
+  LABEL "Discount"
+  POSITION 7
+  MAX-WIDTH 4
+  HELP "Please enter a discount."
+  ORDER 90
+
+ADD FIELD "OrderId" OF "ShoppingCart" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 9
+  MAX-WIDTH 32
+  ORDER 20
+
+ADD FIELD "ShoppingCartId" OF "ShoppingCart" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 10
+  MAX-WIDTH 32
+  ORDER 10
+
+ADD FIELD "EnteredDate" OF "ShoppingCart" AS datetime-tz 
+  DESCRIPTION "Dateand time the order was entered."
+  FORMAT "99/99/9999 HH:MM:SS.SSS"
+  INITIAL "NOW"
+  LABEL "Entered"
+  POSITION 23
+  MAX-WIDTH 8
+  COLUMN-LABEL "Entered"
+  HELP "Specify Date Time order entered."
+  ORDER 100
+
+ADD FIELD "ItemId" OF "ShoppingCart" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 24
+  MAX-WIDTH 32
+  ORDER 40
+
+ADD FIELD "CustomerId" OF "ShoppingCart" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 25
+  MAX-WIDTH 32
+  ORDER 30
+
+ADD FIELD "TenantId" OF "ShoppingCart" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 26
+  MAX-WIDTH 32
+  ORDER 50
+
+ADD FIELD "DealerId" OF "ShoppingCart" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 26
+  MAX-WIDTH 32
+  ORDER 60
+
+ADD FIELD "StatusDetailId" OF "ShoppingCart" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 2
+  MAX-WIDTH 72
+  ORDER 70
+  MANDATORY
+  
+ADD INDEX "ShoppingCart_PK" ON "ShoppingCart" 
+  AREA "Indexes"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "ShoppingCartId" ASCENDING 
+
+ADD INDEX "CustomerEnteredDate" ON "ShoppingCart" 
+  AREA "Indexes"
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "CustomerId" ASCENDING 
+  INDEX-FIELD "EnteredDate" ASCENDING 
+
+ADD INDEX "Customer_FK" ON "ShoppingCart" 
+  AREA "Indexes"
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "CustomerId" ASCENDING 
+
+ADD INDEX "Dealer_FK" ON "ShoppingCart" 
+  AREA "Indexes"
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "DealerId" ASCENDING 
+
+ADD INDEX "Item_FK" ON "ShoppingCart" 
+  AREA "Indexes"
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "ItemId" ASCENDING 
+
+ADD INDEX "Status_FK" ON "ShoppingCart" 
+  AREA "Indexes"
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "StatusDetailId" ASCENDING 
+
+
+ADD TABLE "ShoppingCartOption"
+  AREA "Data"
+  DESCRIPTION "Selected Options for Shopping cart for online orders."
+  DUMP-NAME "shoppingcartoption"
+
+ADD FIELD "ShoppingCartId" OF "ShoppingCartOption" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 10
+  MAX-WIDTH 32
+  ORDER 10
+
+ADD FIELD "ItemId" OF "ShoppingCartOption" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 24
+  MAX-WIDTH 32
+  ORDER 40
+  
+ADD FIELD "Price" OF "ShoppingCartOption" AS decimal 
+  DESCRIPTION "This field should get its default from the ITEM file's price field."
+  FORMAT "->,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Price"
+  POSITION 5
+  MAX-WIDTH 17
+  HELP "Please enter the price"
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "Qty" OF "ShoppingCartOption" AS integer 
+  FORMAT "->>>>9"
+  INITIAL "0"
+  LABEL "Qty"
+  POSITION 6
+  MAX-WIDTH 4
+  HELP "Please enter the quantity."
+  ORDER 80
+
+ADD FIELD "Discount" OF "ShoppingCartOption" AS integer 
+  FORMAT ">>9%"
+  INITIAL "0"
+  LABEL "Discount"
+  POSITION 7
+  MAX-WIDTH 4
+  HELP "Please enter a discount."
+  ORDER 90
+
+ADD FIELD "TenantId" OF "ShoppingCartOption" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 26
+  MAX-WIDTH 32
+  ORDER 50
+
+ADD INDEX "ShoppingCartOption_PK" ON "ShoppingCartOption" 
+  AREA "Indexes"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "ShoppingCartId" ASCENDING 
+  INDEX-FIELD "ItemId" ASCENDING 
+
+
+ADD INDEX "ShoppingCart_FK" ON "ShoppingCartOption" 
+  AREA "Indexes"
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "ShoppingCartId" ASCENDING 
+
+ADD INDEX "Item_FK" ON "ShoppingCartOption" 
+  AREA "Indexes"
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "ItemId" ASCENDING 
+
+.
+PSC
+cpstream=UTF-8
+.
+0000002480

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:DataStructure xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="urn:/progress/openedge/businessrules/v1">
+    <ns2:prodataset name="dsShoppingCart">
+        <ns2:tables>
+            <ns2:table name="eShoppingCart">
+                <ns2:fields>
+                    <ns2:field name="Brand" type="xs:string"/>
+                    <ns2:field name="Id" type="xs:string"/>
+                    <ns2:field name="EnteredDate" type="xs:dateTime"/>
+                    <ns2:field name="Discount" type="xs:decimal"/>
+                    <ns2:field name="Price" type="xs:decimal"/>
+                    <ns2:field name="Qty" type="xs:int"/>
+                    <ns2:field name="CustomerNum" type="xs:int"/>
+                    <ns2:field name="CustomerName" type="xs:string"/>
+                    <ns2:field name="ItemId" type="xs:string"/>
+                    <ns2:field name="ItemNum" type="xs:int"/>
+                    <ns2:field name="ItemName" type="xs:string"/>
+                    <ns2:field name="ItemType" type="xs:string"/>
+                    <ns2:field name="Description" type="xs:string"/>
+                    <ns2:field name="OrderNum" type="xs:int"/>
+                    <ns2:field name="OrderAmount" type="xs:decimal"/>
+                    <ns2:field name="OrderStatus" type="xs:string"/>
+                    <ns2:field name="Instructions" type="xs:string"/>
+                    <ns2:field name="SalesrepCode" type="xs:string"/>
+                    <ns2:field name="DealerCode" type="xs:string"/>
+                    <ns2:field name="DealerId" type="xs:string"/>
+                </ns2:fields>
+            </ns2:table>
+            <ns2:table name="eShoppingCartOption">
+                <ns2:fields>
+                    <ns2:field name="Id" type="xs:string"/>
+                    <ns2:field name="ItemId" type="xs:string"/>
+                    <ns2:field name="ItemNum" type="xs:int"/>
+                    <ns2:field name="ItemName" type="xs:string"/>
+                    <ns2:field name="ItemType" type="xs:string"/>
+                    <ns2:field name="Description" type="xs:string"/>
+                    <ns2:field name="Quantity" type="xs:decimal"/>
+                    <ns2:field name="Price" type="xs:decimal"/>
+                    <ns2:field name="Discount" type="xs:decimal"/>
+                </ns2:fields>
+            </ns2:table>
+            <ns2:table name="eCustomer">
+                <ns2:fields>
+                    <ns2:field name="CustomerNum" type="xs:int"/>
+                    <ns2:field name="CustomerName" type="xs:string"/>
+                    <ns2:field name="CreditLimit" type="xs:decimal"/>
+                    <ns2:field name="Balance" type="xs:decimal"/>
+                    <ns2:field name="Terms" type="xs:string"/>
+                    <ns2:field name="Discount" type="xs:decimal"/>
+                </ns2:fields>
+            </ns2:table>
+        </ns2:tables>
+        <ns2:relations>
+            <ns2:relation name="CartOption" parent="eShoppingCart" child="eShoppingCartOption" cardinality="OneToMany">
+                <ns2:relationField parentField="Id" childField="Id"/>
+            </ns2:relation>
+            <ns2:relation name="CartCustomer" parent="eShoppingCart" child="eCustomer" cardinality="OneToMany">
+                <ns2:relationField parentField="CustomerNum" childField="CustomerNum"/>
+            </ns2:relation>
+        </ns2:relations>
+        <ns2:filePath>C:/devarea/samples/aetf_mobile/src/Common/dsShoppingCart.i</ns2:filePath>
+    </ns2:prodataset>
+</ns2:DataStructure>

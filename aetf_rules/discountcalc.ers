@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RulesheetAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.asg="http:///com/corticon/rulesemf/asg.ecore" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable="http:///com/corticon/rulesemf/viewrulemodel/rulesheet/decisiontable.ecore" majorVersionNumber="5" minorVersionNumber="3" majorServiceNumber="2" buildNumber="5077" updateStamp="_6PnpoO8KEeKPPMsgX90gVw" externalChecksum="3054974779:507989954:371640521">
+  <languageCode>en_US</languageCode>
+  <ruleset vocabularyUpdateStamp="_yVF1UO8FEeKPPMsgX90gVw" vocabulary="shoppingcart.ecore#/">
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.1 #//@ruleset/@ruleStatements.3">
+      <condition/>
+      <condition/>
+      <action>
+        <opaqueExpression expression="eShoppingCart.Discount+=cc.Discount">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Discount = eShoppingCart.Discount + cc.Discount" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Discount">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+      <action/>
+      <action>
+        <opaqueExpression expression="eShoppingCart.Discount+=sco.Discount">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Discount = eShoppingCart.Discount + sco.Discount" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="sco.Discount">
+                <parentTerm text="sco" datatype="eShoppingCartOption" termtype="ENTITY" fulltext="sco" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <rule>
+      <condition>
+        <opaqueExpression expression="(cc.CreditLimit - cc.Balance) / 100 >= 10">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( cc.CreditLimit - cc.Balance ) / 100 >= 10" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="CreditLimit" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.CreditLimit">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="Balance" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Balance">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="(cc.CreditLimit - cc.Balance) / 100" rhs=">= 10"/>
+      </condition>
+      <condition/>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.0" overriddenBy="#//@ruleset/@rules.4">
+      <condition>
+        <opaqueExpression expression="(cc.CreditLimit - cc.Balance) / 100 &lt; 10 or (cc.CreditLimit - cc.Balance) / 100 = null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( cc.CreditLimit - cc.Balance ) / 100 &lt; 10 or ( cc.CreditLimit - cc.Balance ) / 100 = null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="CreditLimit" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.CreditLimit">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="Balance" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Balance">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="(cc.CreditLimit - cc.Balance) / 100" rhs="{&lt; 10, null}"/>
+      </condition>
+      <condition/>
+      <action/>
+      <action/>
+    </rule>
+    <rule>
+      <condition/>
+      <condition>
+        <opaqueExpression expression="eShoppingCart.Qty &lt; 5 or eShoppingCart.Qty = null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Qty &lt; 5 or eShoppingCart.Qty = null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="Qty" datatype="Integer" termtype="ATTRIBUTE" fulltext="eShoppingCart.Qty">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="eShoppingCart.Qty" rhs="{&lt; 5, null}"/>
+      </condition>
+    </rule>
+    <rule documentingRuleStatements="#//@ruleset/@ruleStatements.2" overrides="#//@ruleset/@rules.2">
+      <condition/>
+      <condition>
+        <opaqueExpression expression="eShoppingCart.Qty >= 5">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Qty >= 5" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="Qty" datatype="Integer" termtype="ATTRIBUTE" fulltext="eShoppingCart.Qty">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+        <viewExpressions lhs="eShoppingCart.Qty" rhs=">= 5"/>
+      </condition>
+      <action/>
+      <action>
+        <opaqueExpression expression="eShoppingCart.Discount+=0.5">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Discount = eShoppingCart.Discount + 0.5" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </opaqueExpression>
+      </action>
+    </rule>
+    <filter logicalVariables="#//@ruleset/@logicalVariables.0 #//@ruleset/@logicalVariables.0/@extension.1">
+      <opaqueExpression expression="cc->notEmpty">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="cc->notEmpty" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+          <referencedTermList>
+            <terms text="cc" datatype="Boolean" termtype="COLLECTION" fulltext="cc->notEmpty">
+              <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </opaqueExpression>
+    </filter>
+    <filter logicalVariables="#//@ruleset/@logicalVariables.0 #//@ruleset/@logicalVariables.0/@extension.1">
+      <opaqueExpression expression="cc.Discount&lt;>null">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="cc.Discount &lt;> null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+          <referencedTermList>
+            <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Discount">
+              <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </opaqueExpression>
+    </filter>
+    <filter logicalVariables="#//@ruleset/@logicalVariables.0">
+      <opaqueExpression expression="eShoppingCart.Discount&lt;>null">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Discount &lt;> null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+          <referencedTermList>
+            <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+              <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </opaqueExpression>
+    </filter>
+    <ruleStatement post="Warning" ruleModelElements="#//@ruleset/@rules.2" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.1">
+      <text expression="Customer balance {cc.Balance.truncate} within 10% of credit limit {cc.CreditLimit.truncate}">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Customer balance  + cc.Balance.truncate +  within 10% of credit limit  + cc.CreditLimit.truncate" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="truncate" datatype="Integer" termtype="METHOD" fulltext="cc.Balance.truncate">
+              <parentTerm text="Balance" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Balance">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </parentTerm>
+            </terms>
+            <terms text="truncate" datatype="Integer" termtype="METHOD" fulltext="cc.CreditLimit.truncate">
+              <parentTerm text="CreditLimit" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.CreditLimit">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.0" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.1">
+      <text expression="Customer discount of {cc.Discount}% applied">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Customer discount of  + cc.Discount + % applied" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Discount">
+              <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.4" logicalVariable="#//@ruleset/@logicalVariables.0">
+      <text expression="0.5% discount for multiple - {eShoppingCart.Qty} - items in cart">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="0.5% discount for multiple -  + eShoppingCart.Qty +  - items in cart" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="Qty" datatype="Integer" termtype="ATTRIBUTE" fulltext="eShoppingCart.Qty">
+              <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <ruleStatement post="Info" ruleModelElements="#//@ruleset/@rules.0" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0">
+      <text expression="Cart option discount of {sco.Discount} applied">
+        <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Cart option discount of  + sco.Discount +  applied" expressiontype="BRSTATEMENT">
+          <referencedTermList>
+            <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="sco.Discount">
+              <parentTerm text="sco" datatype="eShoppingCartOption" termtype="ENTITY" fulltext="sco" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </parentTerm>
+            </terms>
+          </referencedTermList>
+        </parserOutput>
+      </text>
+    </ruleStatement>
+    <logicalVariable entity="shoppingcart.ecore#//eShoppingCart" ruleStatements="#//@ruleset/@ruleStatements.2" filters="#//@ruleset/@filters.0 #//@ruleset/@filters.1 #//@ruleset/@filters.2">
+      <extension explicit="true" association="true" entity="shoppingcart.ecore#//eShoppingCartOption" traversedAssocRole="shoppingcart.ecore#//eShoppingCart/CartOption" ruleStatements="#//@ruleset/@ruleStatements.3">
+        <alias value="sco"/>
+        <referencedAttributes attribute="shoppingcart.ecore#//eShoppingCartOption/Discount"/>
+      </extension>
+      <extension explicit="true" association="true" entity="shoppingcart.ecore#//eCustomer" traversedAssocRole="shoppingcart.ecore#//eShoppingCart/CartCustomer" ruleStatements="#//@ruleset/@ruleStatements.1 #//@ruleset/@ruleStatements.0" filters="#//@ruleset/@filters.0 #//@ruleset/@filters.1">
+        <alias value="cc"/>
+        <referencedAttributes attribute="shoppingcart.ecore#//eCustomer/CreditLimit"/>
+        <referencedAttributes attribute="shoppingcart.ecore#//eCustomer/Balance"/>
+        <referencedAttributes attribute="shoppingcart.ecore#//eCustomer/Discount"/>
+      </extension>
+      <referencedAttributes attribute="shoppingcart.ecore#//eShoppingCart/Discount"/>
+      <referencedAttributes attribute="shoppingcart.ecore#//eShoppingCart/Qty"/>
+    </logicalVariable>
+    <logicalVariable entity="shoppingcart.ecore#//eCustomer">
+      <referencedAttributes attribute="shoppingcart.ecore#//eCustomer/Discount"/>
+      <referencedAttributes attribute="shoppingcart.ecore#//eCustomer/Balance"/>
+      <referencedAttributes attribute="shoppingcart.ecore#//eCustomer/CreditLimit"/>
+    </logicalVariable>
+  </ruleset>
+  <rulesheetViewList xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:DecisionTable" advanced="true" sashWeightAdvancedView="17" sashWeightConditionsIf="22">
+    <actionSection rowCount="48" columnWidthFactor="0.5">
+      <actionItemList>
+        <valueSetCell valueSet=""/>
+        <expressionCell external="eShoppingCart.Discount+=cc.Discount">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Discount = eShoppingCart.Discount + cc.Discount" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Discount">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell valueSet=""/>
+        <expressionCell external="eShoppingCart.Discount+=0.5">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Discount = eShoppingCart.Discount + 0.5" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+      <actionItemList>
+        <valueSetCell/>
+        <expressionCell external="eShoppingCart.Discount+=sco.Discount">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Discount = eShoppingCart.Discount + sco.Discount" datatype="Decimal" expressiontype="ASSIGNMENT" enumeration="false" cellValue="false">
+            <modifiedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart"/>
+              </terms>
+            </modifiedTermList>
+            <referencedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="sco.Discount">
+                <parentTerm text="sco" datatype="eShoppingCartOption" termtype="ENTITY" fulltext="sco" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </actionItemList>
+    </actionSection>
+    <scopeSection>
+      <rootNode>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.0">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFolder">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFilter" expression="cc.Discount&lt;>null" filter="#//@ruleset/@filters.1"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFilter" expression="cc->notEmpty" filter="#//@ruleset/@filters.0"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFilter" expression="eShoppingCart.Discount&lt;>null" filter="#//@ruleset/@filters.2"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.0">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.0/@referencedAttributes.0"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAssociation" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.0/@extension.1">
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFolder">
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFilter" expression="cc.Discount&lt;>null" filter="#//@ruleset/@filters.1"/>
+              <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeFilter" expression="cc->notEmpty" filter="#//@ruleset/@filters.0"/>
+            </children>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.1/@referencedAttributes.0"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.1/@referencedAttributes.1"/>
+            <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.0/@extension.1/@referencedAttributes.2"/>
+          </children>
+        </children>
+        <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeEntity" expanded="true" logicalVariable="#//@ruleset/@logicalVariables.1">
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.0"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.1"/>
+          <children xsi:type="com.corticon.rulesemf.viewrulemodel.rulesheet.decisiontable:ScopeAttribute" referencedAttribute="#//@ruleset/@logicalVariables.1/@referencedAttributes.2"/>
+        </children>
+      </rootNode>
+    </scopeSection>
+    <filterSection rowCount="48">
+      <filterItemList filter="#//@ruleset/@filters.0">
+        <expressionCell external="cc->notEmpty">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="cc->notEmpty" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="cc" datatype="Boolean" termtype="COLLECTION" fulltext="cc->notEmpty">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </filterItemList>
+      <filterItemList filter="#//@ruleset/@filters.1">
+        <expressionCell external="cc.Discount&lt;>null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="cc.Discount &lt;> null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Discount">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </filterItemList>
+      <filterItemList filter="#//@ruleset/@filters.2">
+        <expressionCell external="eShoppingCart.Discount&lt;>null">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Discount &lt;> null" datatype="Boolean" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="eShoppingCart.Discount">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </filterItemList>
+    </filterSection>
+    <ruleStatementSection rowCount="48" columnWidthReference="50" columnWidthPostSeverity="75" columnWidthAlias="100" columnWidthID="50" columnWidthText="600" columnWidthRuleName="100" columnWidthRuleLink="100" columnWidthSourceName="100" columnWidthSourceLink="100" columnWidthCategory="100" columnWidthComments="400">
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.0">
+        <reference external="2"/>
+        <text external="Customer balance {cc.Balance.truncate} within 10% of credit limit {cc.CreditLimit.truncate}">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Customer balance  + cc.Balance.truncate +  within 10% of credit limit  + cc.CreditLimit.truncate" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="truncate" datatype="Integer" termtype="METHOD" fulltext="cc.Balance.truncate">
+                <parentTerm text="Balance" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Balance">
+                  <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                    <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+              <terms text="truncate" datatype="Integer" termtype="METHOD" fulltext="cc.CreditLimit.truncate">
+                <parentTerm text="CreditLimit" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.CreditLimit">
+                  <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                    <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                  </parentTerm>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.1">
+        <reference external="0"/>
+        <text external="Customer discount of {cc.Discount}% applied">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Customer discount of  + cc.Discount + % applied" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Discount">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.2">
+        <reference external="4"/>
+        <text external="0.5% discount for multiple - {eShoppingCart.Qty} - items in cart">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="0.5% discount for multiple -  + eShoppingCart.Qty +  - items in cart" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="Qty" datatype="Integer" termtype="ATTRIBUTE" fulltext="eShoppingCart.Qty">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+      <ruleStatementItemList ruleStatement="#//@ruleset/@ruleStatements.3">
+        <reference external="0"/>
+        <text external="Cart option discount of {sco.Discount} applied">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="Cart option discount of  + sco.Discount +  applied" expressiontype="BRSTATEMENT">
+            <referencedTermList>
+              <terms text="Discount" datatype="Decimal" termtype="ATTRIBUTE" fulltext="sco.Discount">
+                <parentTerm text="sco" datatype="eShoppingCartOption" termtype="ENTITY" fulltext="sco" variable="#//@ruleset/@logicalVariables.0/@extension.0">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </text>
+      </ruleStatementItemList>
+    </ruleStatementSection>
+    <conditionSection rowCount="45" columnWidthFactor="0.5">
+      <conditionItemList>
+        <valueSetCell/>
+        <expressionCell external="(cc.CreditLimit - cc.Balance) / 100">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="( cc.CreditLimit - cc.Balance ) / 100" datatype="Decimal" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="CreditLimit" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.CreditLimit">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+              <terms text="Balance" datatype="Decimal" termtype="ATTRIBUTE" fulltext="cc.Balance">
+                <parentTerm text="cc" datatype="eCustomer" termtype="ENTITY" fulltext="cc" variable="#//@ruleset/@logicalVariables.0/@extension.1">
+                  <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+                </parentTerm>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+      <conditionItemList variableMode="Literal">
+        <valueSetCell/>
+        <expressionCell external="eShoppingCart.Qty">
+          <parserOutput xsi:type="com.corticon.rulesemf.asg:Expression" text="eShoppingCart.Qty" datatype="Integer" expressiontype="EXPRESSION" enumeration="false" cellValue="false">
+            <referencedTermList>
+              <terms text="Qty" datatype="Integer" termtype="ATTRIBUTE" fulltext="eShoppingCart.Qty">
+                <parentTerm text="eShoppingCart" datatype="eShoppingCart" termtype="ENTITY" fulltext="eShoppingCart" variable="#//@ruleset/@logicalVariables.0"/>
+              </terms>
+            </referencedTermList>
+          </parserOutput>
+        </expressionCell>
+      </conditionItemList>
+    </conditionSection>
+    <ruleSection columnCount="71">
+      <ruleColumnList ruleId="0" columnWidth="100" pRule="#//@ruleset/@rules.0">
+        <conditionValueSetCellList valueSet=""/>
+        <conditionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="X"/>
+        <actionValueSetCellList/>
+        <actionValueSetCellList valueSet="X"/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="1" columnWidth="100" pRule="#//@ruleset/@rules.1">
+        <overrideValueSetCell valueSet=""/>
+        <conditionValueSetCellList valueSet=">= 10"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="2" columnWidth="100" pRule="#//@ruleset/@rules.2">
+        <overrideValueSetCell valueSet=""/>
+        <conditionValueSetCellList valueSet="{&lt; 10, null}"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="3" columnWidth="100" pRule="#//@ruleset/@rules.3">
+        <overrideValueSetCell valueSet=""/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet="{&lt; 5, null}"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+      <ruleColumnList ruleId="4" columnWidth="100" pRule="#//@ruleset/@rules.4">
+        <overrideValueSetCell valueSet="{1, 2}"/>
+        <conditionValueSetCellList valueSet="-"/>
+        <conditionValueSetCellList valueSet=">= 5"/>
+        <actionValueSetCellList valueSet=""/>
+        <actionValueSetCellList valueSet="X"/>
+        <actionValueSetCellList valueSet=""/>
+      </ruleColumnList>
+    </ruleSection>
+  </rulesheetViewList>
+</com.corticon.rulesemf.assetmodel:RulesheetAsset>

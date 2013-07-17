@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+<!-- BEGIN:Spring security.definition  -->
+    <!--
+      - Location of the XML file that defines the root application context
+      - Applied by ContextLoaderListener.
+      -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            <!-- USER EDIT: Select which application security model to employ
+            /WEB-INF/appSecurity-basic-local.xml
+            /WEB-INF/appSecurity-anonymous.xml
+            /WEB-INF/appSecurity-form-local.xml
+            /WEB-INF/appSecurity-container.xml
+            -->
+            /WEB-INF/appSecurity-anonymous.xml
+        </param-value>
+    </context-param>
+
+    <!--
+      - Loads the root application context of this web app at startup.
+      - The application context is then available via
+      - WebApplicationContextUtils.getWebApplicationContext(servletContext).
+    -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+   <!-- Nothing below here needs to be modified -->
+
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+      <filter-name>springSecurityFilterChain</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>mvc-dispatch</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>/WEB-INF/mvc-dispatch-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+<!-- END:Spring security.definition  -->
+    
+<!-- BEGIN:CXF definition  -->
+    <!-- location of spring xml files -->
+    <context-param>
+        <param-name>archiveLocation</param-name>
+        <param-value>WEB-INF/adapters/</param-value>
+    </context-param>
+
+    <!-- USER EDIT: comma separated list of REST service [.paar] files 
+                    deployed in this REST application -->
+    <context-param>
+        <param-name>archiveFiles</param-name>
+        <param-value>@webapp@.paar</param-value>
+    </context-param>
+
+    <!-- location of runTime Properties file -->
+    <context-param>
+        <param-name>runTimeProperties</param-name>
+        <param-value>WEB-INF/adapters/runtime.props</param-value>
+    </context-param>
+
+    <!-- Certificate jar location -->
+    <!--   
+    <context-param>
+        <param-name>certlocation</param-name>
+        <param-value>C:/Progress/dlc/certs/psccerts.jar</param-value>
+    </context-param>
+    -->
+    <!-- OERestAdapterManagerServlet used to Manage Application -->
+    <servlet>
+        <description></description>
+        <display-name>OERestAdapterManagerServlet</display-name>
+        <servlet-name>OERestAdapterManagerServlet</servlet-name>
+        <servlet-class>com.progress.rest.adapters.oe.OERestAdapterManagerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>OERestAdapterManagerServlet</servlet-name>
+        <url-pattern>/adapterman/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- OERestAdapterManagerFilter is filter class for OERestAdapterManagerServlet -->
+    <filter>
+        <display-name>OERestAdapterManagerFilter</display-name>
+        <filter-name>OERestAdapterManagerFilter</filter-name>
+        <filter-class>com.progress.rest.adapters.oe.OERestAdapterManagerFilter</filter-class>
+    </filter>
+        <filter-mapping>
+        <filter-name>OERestAdapterManagerFilter</filter-name>
+        <url-pattern>/adapterman/*</url-pattern>
+    </filter-mapping>
+
+    <!-- OERequestFilter is root filter class for Web-App -->
+    <filter>
+        <display-name>OERequestFilter</display-name>
+        <filter-name>OERequestFilter</filter-name>
+        <filter-class>com.progress.rest.adapters.oe.OERequestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>OERequestFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- the listener that kick-starts Spring -->
+    <listener>
+    <!--<listener-class>com.progress.caf.rest.RestContextLoaderListener</listener-class> -->
+        <listener-class>com.progress.rest.adapters.oe.OERestServletContextListener</listener-class>
+    </listener>
+
+    <!-- CXF servlet -->
+    <servlet>
+        <servlet-name>OERestAdapter</servlet-name>
+        <servlet-class>com.progress.rest.adapters.oe.OERestCXFNonSpringServlet</servlet-class> 
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <param-value>com.progress.rest.manager.ManagerRoot</param-value>
+    </init-param>
+    <init-param>
+        <param-name>redirects-list</param-name>
+        <param-value>
+        .*\.jsp
+        .*\.jspx
+        </param-value>
+    </init-param>
+    <init-param>
+        <param-name>redirect-servlet-name</param-name>
+        <param-value>mvc-dispatch</param-value>
+    </init-param>
+    <init-param>
+        <param-name>static-resources-list</param-name>
+        <param-value>
+        .*\.html
+        .*\.htm
+        .*\.json
+        .*\.js
+        </param-value>
+    </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- all our webservices are mapped under this URI pattern -->
+    <servlet-mapping>
+        <servlet-name>OERestAdapter</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Filter class for REST Adapter Servlet -->
+    <filter>
+        <display-name>OERestAdapterFilter</display-name>
+        <filter-name>OERestAdapterFilter</filter-name>
+        <filter-class>com.progress.rest.adapters.oe.OERestAdapterFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>OERestAdapterFilter</filter-name>
+        <servlet-name>OERestAdapter</servlet-name>
+    </filter-mapping>
+
+<!-- END:CXF definition  -->
+
+<!-- BEGIN:container.security-->
+
+    <!-- USER EDIT: login session security configuration (requires Servlet spec 3.0 )
+        <http-only> {true|false} Block cookie access to JavaScript
+        <secure>    {true|false} Require HTTPS for transmitting cookie
+        <tracking-mode> {COOKIE|URL|SSL} How session id communicated to client
+        <session-timeout> {minutes}  How many minutes for a session to be idle before deletion
+    -->
+    <!--
+    <session-config>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>false</secure>
+            <tracking-mode>URL</tracking-mode>
+        </cookie-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    -->
+
+    <!-- This security containt applies only to the REST Manager
+         application interacting with this application.
+         DO NOT CHANGE THIS DEFINITION UNLESS INSTRUCTED TO BY
+         OPENEDGE.
+     -->
+    <security-constraint>
+        <display-name>Private REST Manager access </display-name>
+        <web-resource-collection>
+            <web-resource-name>Restricted Area</web-resource-name>
+            <url-pattern>/adapterman</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+
+    <!-- USER EDIT: uncomment and configure container security ONLY if 
+         appSecurity-container.xml is configured for the Spring 
+         security above 
+         The <auth-constraint> element needs to define the roles
+         returned by the Java container's authentication.  Those
+         Same role names need to be configured in appSecurity-container.xml
+    -->
+    <!--
+    <security-constraint>
+        <display-name>REST Manager Container Security Constraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected Area</web-resource-name>
+            <url-pattern>/*</url-pattern>
+
+            <http-method>DELETE</http-method>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ROLE_PSCAdmin</role-name>
+            <role-name>ROLE_PSCOper</role-name>
+            <role-name>ROLE_PSCUser</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>REST Manager Application</realm-name>
+    </login-config>
+    -->
+
+<!-- END:container.security-->
+
+<!-- BEGIN: container managed http error pages traps -->
+
+  <welcome-file-list>
+    <welcome-file>/index.html</welcome-file>
+  </welcome-file-list>
+
+  <error-page>
+    <error-code>401</error-code>
+    <location>/static/error/error401.html</location>
+  </error-page>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/static/error/error404.html</location>
+  </error-page>
+
+  <error-page>
+    <error-code>503</error-code>
+    <location>/static/error/error503.html</location>
+  </error-page>
+
+<!-- END: container managed http error pages traps -->
+
+</web-app>

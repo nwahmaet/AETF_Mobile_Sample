@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Application context containing http authentication control
+  -->
+
+<b:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:b="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <!-- intercept-url hints
+         role names in the access attribute must have "ROLE_" prefixes. What occurs 
+         the underscore is up to you.
+     -->
+    <!-- Security space reserved by the OpenEdge REST Manager to signal 
+         the application to update its state.  This URL space will always 
+         use a built-in account in a separate authentication provider.  
+         DO  NOT ALTER THIS HTTP SECURITY CONFIGURATION  
+     -->
+    <http pattern="/adapterman"
+        auto-config="false" 
+        use-expressions="true" 
+        create-session="never" 
+        disable-url-rewriting="true" 
+        authentication-manager-ref="RestManagerAuth"
+        realm="REST Manager Port" >
+
+        <!-- Entry point for the REST Manager to cause a state update -->
+        <intercept-url pattern="/adapterman" 
+                    access="hasAnyRole('ROLE_PSCAdapter')"/> 
+
+        <http-basic />
+
+    </http>
+
+    <!-- This HTTP security space represents the public REST application 
+         and controls the authentication/authorization process to its 
+         dynamic/static content.  
+         ALTER THIS SECTION TO MEET YOUR PRODUCTION DEPLOYMNET REQUIREMENTS
+     -->
+    <http auto-config="false" 
+        use-expressions="true" 
+        create-session="stateless" 
+        disable-url-rewriting="true"
+        authentication-manager-ref="RestApplicationtAuth" >
+
+        <!-- OpenEdge ClientPrincipal SSO Filter -->
+        <custom-filter after="SESSION_MANAGEMENT_FILTER" 
+                       ref="OEClientPrincipalFilter" />
+
+        <!-- OpenEdge CORS Filter -->
+        <custom-filter before="FILTER_SECURITY_INTERCEPTOR" 
+                       ref="OECORSFilter" />
+
+        <!-- URL access controls -->
+
+        <!-- HTTP REST to AppServer gateway -->
+        <intercept-url pattern="/rest/**" 
+                    access="hasAnyRole('ROLE_PSCUser')"/>
+
+        <!-- Standard web-app root for public data like index.html 
+             DO NOT grant /** permitAll() access  -->
+        <intercept-url pattern="/*" method="GET" 
+                    access="permitAll()"/>
+
+        <!-- HTTP static files -->
+        <intercept-url pattern="/static/error/*" method="GET"
+                    access="permitAll()"/>
+                    
+        <intercept-url pattern="/static/auth/*" 
+                    access="permitAll()" />
+
+        <intercept-url pattern="/static/**" 
+                    access="hasAnyRole('ROLE_PSCUser')"/>
+    
+        <!-- HTTP dynamic JSP pages -->
+        <intercept-url pattern="/jsp/**" 
+                    access="hasAnyRole('ROLE_PSCUser')"/>
+
+        <!-- Best practice deny all that is not explicitly granted -->
+        <intercept-url pattern="/**" access="denyAll()"/>
+
+        <!-- authentication models -->
+        <!-- the role names here need to be coordinated with the container's
+             <auth-constraint> configuration in web.xml.  The role names
+             contained in this element then need to be defined in the
+             <intercept-url> elements above.
+         -->
+        <jee mappable-roles="ROLE_PSCUser" />
+
+        <!-- login session controls 
+             note: comment out if session-creation is stateless -->
+        <!--session-management session-fixation-protection="none" /-->
+
+        <!-- error handlers -->
+        <access-denied-handler error-page="/static/error/error401.html" />
+
+    </http>
+
+    <!-- The security filter that turns a Spring token into an OpenEdge
+         ClientPrincipal object -->
+    <b:bean id="OEClientPrincipalFilter"
+             class="com.progress.rest.security.OEClientPrincipalFilter">
+             <!--
+             <b:property name="enablecp" value="false" />
+             <b:property name="domain" value="sample" />
+             <b:property name="roles" value="sample" />
+             <b:property name="authz" value="false" />
+             <b:property name="expires" value="600" />
+             <b:property name="accntinfo" value="true" />
+             <b:property name="properties" >
+                <b:map>
+                     <b:entry key="prop-1" value="string1"/>
+                     <b:entry key="prop-2" value="string2"/>
+                </b:map>
+             </b:property>
+             <b:property name="ccid" value="true" />
+             <b:property name="anonymous" value="true" />
+             -->
+    </b:bean>
+
+    <!-- The security filter that implements the CORS standard for controling
+         cross site resource access by http clients. -->
+    <b:bean id="OECORSFilter"
+             class="com.progress.rest.security.OECORSFilter" >
+             <!-- Examples:
+             <b:property name="allowAll" value="false" />
+             <b:property name="allowDomains" value="http://studio.progress.com,http://mobile.progress.com" />
+             <b:property name="allowDomains" value="*" />
+             <b:property name="allowSubdomains" value="false" />
+             <b:property name="allowMethods" value="" />
+             <b:property name="messageHeaders" value="" />
+             <b:property name="responseHeaders" value="" />
+             <b:property name="supportCredentials" value="true" />
+             <b:property name="maxAge" value="-1" />
+             -->
+    </b:bean>
+
+    <!-- Authentication manager reserved for PUBLIC anonymous authn 
+         to the static and dynaic application content.
+     -->
+    <authentication-manager id="RestApplicationtAuth" >
+        <!--
+        <authentication-provider-->
+            <!-- Uncomment to add strong password hashing in users.properties 
+            <password-encoder hash="sha" >
+                <salt-source user-property="username" />
+            </password-encoder>
+            -->
+            <!--
+            <user-service properties="/WEB-INF/users.properties" />
+        </authentication-provider>
+        -->
+    </authentication-manager>
+
+    <!-- Authentication manager reserved for REST Manager HTTP Basic 
+         authn to the /adapterman resource. 
+         DO NOT CHANGE THE USER ACCOUNT NAME
+         YOU MAY CHANGE THE USER ACCOUNT PASSWORD IF YOU SYNCHRONIZE
+            THE NEW VALUE WITH THE PASSWORD SENT BY THE REST MANAGER
+         Note: You may use the following Java console utilility to generate 
+               new passwords :
+                 com.progress.rest.security.EncodePassword class
+    -->
+    <authentication-manager id="RestManagerAuth" >
+        <!-- REST Manager access -->
+        <authentication-provider>
+            <!-- Require a strong password hashing in users.properties -->
+            <password-encoder hash="sha-256" base64="true" >
+                <salt-source user-property="username" />
+            </password-encoder>
+            <user-service>
+                <user name="C62384a0F1516B00" 
+                      password="UVrkuS+PkvAxurOzB/mZAQujgOlEMjg3UjkVXEdyopw=" 
+                      authorities="ROLE_PSCAdapter" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+</b:beans>

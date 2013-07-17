@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.corticon.rulesemf.assetmodel:RuletestAsset xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.corticon.rulesemf.assetmodel="http:///com/corticon/rulesemf/assetmodel.ecore" xmlns:com.corticon.rulesemf.viewtestmodel.ruletest.tabfolder="http:///com/corticon/rulesemf/viewtestmodel/ruletest/tabfolder.ecore" xmlns:com.corticon.rulesemf.viewtestmodel.testsheet.treeset="http:///com/corticon/rulesemf/viewtestmodel/testsheet/treeset.ecore" majorVersionNumber="5" minorVersionNumber="3" majorServiceNumber="2" buildNumber="5077" updateStamp="_T-pvYdndEeKDQIqEqaUENA" externalChecksum="3054974779:507989954">
+  <testsheetAssets majorVersionNumber="5" minorVersionNumber="3" majorServiceNumber="2" buildNumber="5077" updateStamp="_ASNowO8MEeK2hNnx9Papog" externalChecksum="3054974779:507989954">
+    <testsheet ruleActivityUpdateStamp="_JRXqJ9nZEeKpaq8P_7U15Q" ruleActivity="calculatecartdiscount.erf#//@ruleflow">
+      <input/>
+      <output>
+        <PostedMessage severity="Info" text="Customer discount of null% applied"/>
+        <PostedMessage severity="Info" text="Customer discount of 12% applied"/>
+        <PostedMessage severity="Info" text="Customer discount of null% applied"/>
+        <PostedMessage severity="Info" text="Customer discount of 3% applied"/>
+        <PostedMessage severity="Info" text="Cart option discount of null applied"/>
+        <PostedMessage severity="Info" text="Cart option discount of null applied"/>
+        <PostedMessage severity="Info" text="Cart option discount of null applied"/>
+        <PostedMessage severity="Info" text="Cart option discount of 0.000000 applied"/>
+        <PostedMessage severity="Info" text="Cart option discount of 1.000000 applied"/>
+        <PostedMessage severity="Warning" text="Customer balance 800 within 10% of credit limit 1200"/>
+        <PostedMessage severity="Warning" text="Customer balance 1100 within 10% of credit limit 1200"/>
+        <PostedMessage severity="Warning" text="Rulesheet discountcalc: eShoppingCartOption.Discount is used on the right-hand side of an assignment action but its value is null.  As a result the action does not fire as expected."/>
+        <PostedMessage severity="Warning" text="Rulesheet discountcalc: eShoppingCartOption.Discount is used on the right-hand side of an assignment action but its value is null.  As a result the action does not fire as expected."/>
+        <PostedMessage severity="Warning" text="Rulesheet discountcalc: eShoppingCartOption.Discount is used on the right-hand side of an assignment action but its value is null.  As a result the action does not fire as expected."/>
+        <PostedMessage severity="Warning" text="Rulesheet discountcalc: eShoppingCart.Discount is used on the right-hand side of an assignment action but its value is null.  As a result the action does not fire as expected."/>
+        <PostedMessage severity="Info" text="1% discount for multiple - 7 - items in cart"/>
+        <PostedMessage severity="Warning" text="Rulesheet discountcalc: eShoppingCart.Discount is used on the right-hand side of an assignment action but its value is null.  As a result the action does not fire as expected."/>
+        <PostedMessage severity="Info" text="1% discount for multiple - 9 - items in cart"/>
+      </output>
+      <expectedOutput/>
+    </testsheet>
+    <testsheetViewList xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestTreeSet">
+      <inputRoot>
+        <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestEntity" nodeID="1" manuallyCreated="true" eClass="shoppingcart.ecore#//eShoppingCart">
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/Brand"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/CustomerName"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/CustomerNum"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/DealerCode"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/DealerId"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/Description"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/Discount"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/EnteredDate"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/Id"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/Instructions"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/ItemId"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/ItemName"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/ItemNum"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/ItemType"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/OrderAmount"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/OrderNum"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/OrderStatus"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/Price"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/Qty"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCart/SalesrepCode"/>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAssociationImbedded" nodeID="1" manuallyCreated="true" eReference="shoppingcart.ecore#//eShoppingCart/CartCustomer" eClass="shoppingcart.ecore#//eCustomer">
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" value="1000.000000" eAttribute="shoppingcart.ecore#//eCustomer/Balance"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" value="1200.000000" eAttribute="shoppingcart.ecore#//eCustomer/CreditLimit"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" value="" eAttribute="shoppingcart.ecore#//eCustomer/CustomerName"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eCustomer/CustomerNum"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" value="2.100000" eAttribute="shoppingcart.ecore#//eCustomer/Discount"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" value="" eAttribute="shoppingcart.ecore#//eCustomer/Terms"/>
+          </children>
+          <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAssociationImbedded" nodeID="1" manuallyCreated="true" eReference="shoppingcart.ecore#//eShoppingCart/CartOption" eClass="shoppingcart.ecore#//eShoppingCartOption">
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCartOption/Description"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" value="0.000000" eAttribute="shoppingcart.ecore#//eShoppingCartOption/Discount"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" value="" eAttribute="shoppingcart.ecore#//eShoppingCartOption/Id"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCartOption/ItemId"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCartOption/ItemName"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCartOption/ItemNum"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCartOption/ItemType"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCartOption/Price"/>
+            <children xsi:type="com.corticon.rulesemf.viewtestmodel.testsheet.treeset:TestAttribute" manuallyCreated="true" eAttribute="shoppingcart.ecore#//eShoppingCartOption/Quantity"/>
+          </children>
+        </children>
+      </inputRoot>
+      <outputRoot newOrModified="true" passed="false"/>
+      <outputMessageSection rowCount="20" columnWidthSeverity="100" columnWidthMessage="600"/>
+      <expectedRoot passed="false"/>
+      <expectedMessageSection rowCount="20" columnWidthSeverity="100" columnWidthMessage="600"/>
+    </testsheetViewList>
+  </testsheetAssets>
+  <ruletest vocabularyUpdateStamp="_yVF1UO8FEeKPPMsgX90gVw" testsheets="#//@testsheetAssets.0/@testsheet" vocabulary="shoppingcart.ecore#/"/>
+  <ruletestViewList xsi:type="com.corticon.rulesemf.viewtestmodel.ruletest.tabfolder:TestTabFolder">
+    <testTabList name="untitled_1"/>
+  </ruletestViewList>
+</com.corticon.rulesemf.assetmodel:RuletestAsset>

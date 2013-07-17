@@ -1,0 +1,15 @@
+# Shared PF for AutoEdge|TheFactory 
+# AutoEdge|TheFactory Database Connection
+ -db ./db/aetf.db
+ 
+ -T  ./temp
+ -s 200 
+ -mmax 65534 
+ -debugalert 
+ -rereadnolock 
+ -inp 16000 
+ -tok 4000 
+ -noincrwarn
+ -errorstack
+ -D 256
+ 

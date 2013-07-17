@@ -1,0 +1,78 @@
+ADD TABLE "ShoppingCartOption"
+  AREA "Data"
+  DESCRIPTION "Selected Options for Shopping cart for online orders."
+  DUMP-NAME "shoppingcartoption"
+
+ADD FIELD "ShoppingCartId" OF "ShoppingCartOption" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 10
+  MAX-WIDTH 32
+  ORDER 10
+
+ADD FIELD "ItemId" OF "ShoppingCartOption" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 24
+  MAX-WIDTH 32
+  ORDER 40
+  
+ADD FIELD "Price" OF "ShoppingCartOption" AS decimal 
+  DESCRIPTION "This field should get its default from the ITEM file's price field."
+  FORMAT "->,>>>,>>9.99"
+  INITIAL "0"
+  LABEL "Price"
+  POSITION 5
+  MAX-WIDTH 17
+  HELP "Please enter the price"
+  DECIMALS 2
+  ORDER 70
+
+ADD FIELD "Qty" OF "ShoppingCartOption" AS integer 
+  FORMAT "->>>>9"
+  INITIAL "0"
+  LABEL "Qty"
+  POSITION 6
+  MAX-WIDTH 4
+  HELP "Please enter the quantity."
+  ORDER 80
+
+ADD FIELD "Discount" OF "ShoppingCartOption" AS integer 
+  FORMAT ">>9%"
+  INITIAL "0"
+  LABEL "Discount"
+  POSITION 7
+  MAX-WIDTH 4
+  HELP "Please enter a discount."
+  ORDER 90
+
+ADD FIELD "TenantId" OF "ShoppingCartOption" AS character 
+  DESCRIPTION "Object ID"
+  FORMAT "x(32)"
+  INITIAL ?
+  POSITION 26
+  MAX-WIDTH 32
+  ORDER 50
+
+ADD INDEX "ShoppingCartOption_PK" ON "ShoppingCartOption" 
+  AREA "Indexes"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "ShoppingCartId" ASCENDING 
+  INDEX-FIELD "ItemId" ASCENDING 
+
+
+ADD INDEX "ShoppingCart_FK" ON "ShoppingCartOption" 
+  AREA "Indexes"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "ShoppingCartId" ASCENDING 
+
+ADD INDEX "Item_FK" ON "ShoppingCartOption" 
+  AREA "Indexes"
+  INDEX-FIELD "TenantId" ASCENDING 
+  INDEX-FIELD "ItemId" ASCENDING 

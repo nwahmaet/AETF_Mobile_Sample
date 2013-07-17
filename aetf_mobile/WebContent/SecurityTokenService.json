@@ -1,0 +1,42 @@
+{
+    "version": "1.0",
+    "lastModified": "Tue Jan 29 11:08:58 EST 2013",
+    "services": [{
+        "name": "SecurityTokenService",
+        "address": "\/rest\/SecurityTokenService",
+        "useRequest": true,
+        "resources": [{
+            "name": "SecurityTokenService",
+            "path": "\/SecurityTokenService",
+            "operations": [
+                {
+                    "name": "Login",
+                    "path": "\/Login",
+                    "type": "invoke",
+                    "verb": "put",
+                    "params": [
+                        {"name": "pcUserName","type": "REQUEST_BODY"},
+                        {"name": "pcDomain","type": "REQUEST_BODY"},
+                        {"name": "pcPassword","type": "REQUEST_BODY"}
+                    ]
+                },
+                {
+                    "name": "ValidateSession",
+                    "path": "\/ValidateSession",
+                    "type": "invoke",
+                    "verb": "put",
+                    "params": [{
+                        "name": "pcUserContextId","type": "REQUEST_BODY"}]
+                },
+                {
+                    "name": "Logout",
+                    "path": "\/Logout",
+                    "type": "invoke",
+                    "verb": "put",
+                    "params": [{
+                        "name": "pcUserContextId","type": "REQUEST_BODY"}]
+                }
+            ]
+        }]
+    }]
+}
